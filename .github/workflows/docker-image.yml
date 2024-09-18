@@ -9,7 +9,8 @@ on:
 
 # Defines environment variables for the workflow. These are used for the Container registry domain, and a version for the Docker image that this workflow builds.
 env:
-  REGISTRY: ghcr.io
+  #REGISTRY: ghcr.io
+  REGISTRY: docker.io
   VERSION: ${{ github.ref_name }}
 
 jobs:
@@ -27,8 +28,8 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GH_PAT }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: lowercase github.repository
         run: |
           echo "IMAGE_NAME=`echo ${{github.repository}} | tr '[:upper:]' '[:lower:]'`" >>${GITHUB_ENV}
