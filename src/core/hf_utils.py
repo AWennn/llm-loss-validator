@@ -1,5 +1,5 @@
 from huggingface_hub import HfApi
-from huggingface_hub.utils._errors import EntryNotFoundError
+from huggingface_hub.utils import EntryNotFoundError
 from loguru import logger
 
 api = HfApi()
